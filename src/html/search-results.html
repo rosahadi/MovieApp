@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOVIEAPP</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <script defer src="../js/global.js"></script>
+    <script type="module" src="../js/search_results.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <a href="./index.html" class="logo">MOVIE<span>APP</span></a>
+
+      <!-- Search view -->
+      <div class="search-view">
+        <form class="search-bar" action="./search-results.html" method="GET">
+          <div class="input-wrapper">
+            <input
+              type="text"
+              aria-label="search movies"
+              placeholder="Search for movie, tv show..."
+              autocomplete="off"
+              class="search-input"
+            />
+            <span class="material-symbols-outlined input-icon"> search </span>
+          </div>
+
+          <button
+            class="search-input-btn"
+            aria-label="Submit search"
+            type="submit"
+            search-btn
+          >
+            <span class="material-symbols-outlined"> search </span>
+          </button>
+        </form>
+
+        <div class="search-view-content"></div>
+      </div>
+      <!-- Search view End-->
+
+      <button class="search-btn" search-toggler menu-close>
+        <span class="material-symbols-outlined search-icon"> search </span>
+        <span class="material-symbols-outlined close-icon"> close </span>
+      </button>
+
+      <button class="menu-btn" menu-btn menu-toggler>
+        <span class="material-symbols-outlined menu-icon"> menu </span>
+        <span class="material-symbols-outlined close"> close </span>
+      </button>
+    </header>
+
+    <main>
+      <nav class="sidebar" sidebar></nav>
+
+      <div class="overlay" overlay menu-toggler></div>
+
+      <article class="container" page-content>
+        <!-- Create a container for displaying search results -->
+      </article>
+    </main>
+  </body>
+</html>

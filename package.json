@@ -1,0 +1,19 @@
+{
+  "name": "movieapp",
+  "version": "1.0.0",
+  "description": "",
+  "default": "src/html/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "targets": {
+    "main": false
+  },
+  "scripts": {
+    "start": "parcel src/html/*.html ",
+    "build": "parcel build src/html/*.html --dist-dir ./dist --public-url /"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
