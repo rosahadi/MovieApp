@@ -6,10 +6,6 @@ import { sidebar } from './sidebar.js';
 
 sidebar();
 
-// import movieSearch from './search.js';
-
-// movieSearch.initializeEventListeners();
-
 const pageContent = document.querySelector('[page-content]');
 
 let currentOpacityInterval = null;
@@ -70,21 +66,38 @@ const genreToString = function (genreIdList) {
     .join(', ');
 };
 
-// Fetch genre data from the server
-fetchDataFromServer(
-  `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`,
-  function ({ genres }) {
-    for (const { id, name } of genres) {
-      genreList[id] = name;
-    }
+// Initialize the page
+(async () => {
+  await fetchDataFromServer(
+    `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`,
+    function ({ genres }) {
+      for (const { id, name } of genres) {
+        genreList[id] = name;
+      }
 
-    // Fetch popular movies
-    fetchDataFromServer(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=1`,
-      bannerSection
-    );
-  }
-);
+      // Fetch popular movies
+      fetchDataFromServer(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=1`,
+        bannerSection
+      );
+    }
+  );
+
+  await fetchDataFromServer(
+    `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=1`,
+    trendingSection
+  );
+
+  await fetchDataFromServer(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=1`,
+    topRatedSection
+  );
+
+  await fetchDataFromServer(
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&page=1`,
+    upcomingSection
+  );
+})();
 
 const bannerSection = function ({ results: movies }) {
   const banner = document.createElement('section');
@@ -167,13 +180,6 @@ const bannerSection = function ({ results: movies }) {
   // Add event listeners for banner slider controls
 
   addHeroSlide();
-
-  // Fetch trending movies
-
-  fetchDataFromServer(
-    `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=1`,
-    trendingSection
-  );
 };
 
 // Function to add event listeners for banner slider controls
@@ -306,16 +312,6 @@ const trendingSection = function ({ results: movieList }) {
       });
     });
   });
-
-  fetchDataFromServer(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=1`,
-    topRatedSection
-  );
-
-  fetchDataFromServer(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&page=1`,
-    upcomingSection
-  );
 };
 
 // Top Rated section
