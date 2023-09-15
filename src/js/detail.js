@@ -6,10 +6,11 @@ import { sidebar } from './sidebar.js';
 
 sidebar();
 
-const movieId = window.localStorage.getItem('movieId');
+// const movieId = window.localStorage.getItem('movieId');
 
 const urlParams = new URLSearchParams(window.location.search);
 const mediaType = urlParams.get('type');
+const movieId = urlParams.get('id');
 
 const pageContent = document.querySelector('[page-content]');
 

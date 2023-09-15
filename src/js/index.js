@@ -154,7 +154,7 @@ const bannerSection = function ({ results: movies }) {
       ${overview}
       </p>
 
-      <a href="./detail.html?type=movie" class="btn" onclick="getMovieDetail(${id})"
+      <a href="./detail.html?type=movie&id=${id}" class="btn"
         ><span class="material-symbols-outlined" aria-hidden="true">
           play_circle
         </span>

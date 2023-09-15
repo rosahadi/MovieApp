@@ -61,7 +61,7 @@ class MovieSearch {
       const resultItem = document.createElement('div');
       resultItem.classList.add('item-list');
 
-      resultItem.innerHTML = `<a href="./detail.html?type=movie" class="list-item" onclick="getMovieDetail(${id})">
+      resultItem.innerHTML = `<a href="./detail.html?type=movie&id=${id}" class="list-item">
                                   <span class="material-symbols-outlined">theaters</span>
                                   <div class="item-info">
                                   <span class="item-title">${result.title}</span>
@@ -78,7 +78,7 @@ class MovieSearch {
       const resultItem = document.createElement('div');
       resultItem.classList.add('item-list');
 
-      resultItem.innerHTML = `<a href="./detail.html?type=tv" class="list-item" onclick="getMovieDetail(${id})">
+      resultItem.innerHTML = `<a href="./detail.html?type=tv&id=${id}" class="list-item">
                                   <span class="material-symbols-outlined">tv</span>
                                   <div class="item-info">
                                   <span class="item-title">${result.name}</span>

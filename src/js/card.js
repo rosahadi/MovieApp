@@ -42,9 +42,9 @@ export const createCard = function (
       <div class="card-badge">${releaseYear}</div>
     </div>
 
-    <a href="./detail.html?type=${mediaType}" title="${
+    <a href="./detail.html?type=${mediaType}&id=${id}" title="${
     media[titleField]
-  }" class="card-btn" onclick="getMovieDetail(${id})"></a>
+  }" class="card-btn"></a>
   `;
 
   return card;
