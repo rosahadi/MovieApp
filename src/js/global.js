@@ -66,12 +66,3 @@ addEventOnElements(closeMenu, 'click', function () {
   menuBtn.classList.remove('active');
   overlay.classList.remove('active');
 });
-
-/**
- * store movieId in `localStorage`.
- * when you click any movie card
- */
-
-const getMovieDetail = function (movieId) {
-  window.localStorage.setItem('movieId', String(movieId));
-};
