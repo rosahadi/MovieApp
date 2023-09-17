@@ -82,21 +82,6 @@ const genreToString = function (genreIdList) {
       );
     }
   );
-
-  await fetchDataFromServer(
-    `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=1`,
-    trendingSection
-  );
-
-  await fetchDataFromServer(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=1`,
-    topRatedSection
-  );
-
-  await fetchDataFromServer(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&page=1`,
-    upcomingSection
-  );
 })();
 
 const bannerSection = function ({ results: movies }) {
@@ -180,6 +165,24 @@ const bannerSection = function ({ results: movies }) {
   // Add event listeners for banner slider controls
 
   addHeroSlide();
+
+  // Call an IIFE here if needed
+  (async () => {
+    await fetchDataFromServer(
+      `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=1`,
+      trendingSection
+    );
+
+    await fetchDataFromServer(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=1`,
+      topRatedSection
+    );
+
+    await fetchDataFromServer(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&page=1`,
+      upcomingSection
+    );
+  })();
 };
 
 // Function to add event listeners for banner slider controls
@@ -194,24 +197,18 @@ const addHeroSlide = function () {
   firstSliderItem.classList.add('active');
   firstSliderControl.classList.add('active');
 
-  const slideItems = function (e) {
-    firstSliderItem.classList.remove('active');
-    firstSliderControl.classList.remove('active');
+  sliderControls.forEach((control, controlIndex) => {
+    control.addEventListener('click', function () {
+      firstSliderItem.classList.remove('active');
+      firstSliderControl.classList.remove('active');
 
-    // Get the index of the control that was clicked
+      sliderItems[controlIndex].classList.add('active');
+      this.classList.add('active');
 
-    const controlIndex = Number(this.getAttribute('slider-control'));
-
-    sliderItems[controlIndex].classList.add('active');
-    this.classList.add('active');
-
-    // Update the currently active item and control
-
-    firstSliderItem = sliderItems[controlIndex];
-    firstSliderControl = this;
-  };
-
-  addEventOnElements(sliderControls, 'click', slideItems);
+      firstSliderItem = sliderItems[controlIndex];
+      firstSliderControl = this;
+    });
+  });
 };
 
 // Trending section

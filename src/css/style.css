@@ -264,6 +264,7 @@ button {
 .poster-box {
   background-image: url('../images/poster-bg-icon.png');
   aspect-ratio: 2 / 3;
+  cursor: pointer;
 }
 
 .video-card {
